@@ -1,13 +1,16 @@
 import React,{ Component} from 'react';
-import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput} from 'react-native';
+import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert} from 'react-native';
 
  const Login=()=>{
-    const [email,setEmail]=React.useState("eg:sulthan@tradenapp.com or +91 9742 889 859");
-    const [password,setPassword]=React.useState("Password");
+    const [email,setEmail]=React.useState("");
+    const [password,setPassword]=React.useState("");
     return(
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={()=>Alert.alert('Hello')}
+            >
                 <Image style={styles.backLogo} source={require('../../Images/back.png')}></Image>
             </TouchableOpacity>
             <Text style={styles.textHeader}>LOGIN</Text>
@@ -16,24 +19,37 @@ import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput} from 'react-nativ
             <TextInput
                 style={styles.emailBody}
                 value={email}
+                placeholder="eg:sulthan@tradenapp.com or +91 9742 889 859"
                 onChangeText={text=>setEmail(text)}
                 ></TextInput>
             <Text style={styles.passwordHeader}>PASSWORD</Text>
             <TextInput
                 style={styles.passwordBody}
                 value={password}
+                placeholder="Password"
                 onChangeText={text=>setPassword(text)}
                 ></TextInput>
-                <TouchableOpacity style={styles.loginButton}><Text style={styles.loginTitle}>LOGIN</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.lastButton}><Text style={styles.last}>Forget Password?</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.lastButton}><Text style={styles.last}>Not a Member Yet? Sign Up Now</Text></TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.loginButton}
+                    onPress={()=>Alert.alert('Hello')}
+                ><Text style={styles.loginTitle}>LOGIN</Text></TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.lastButton}
+                    onPress={()=>Alert.alert('Hello')}
+                    ><Text style={styles.last}>Forget Password?</Text></TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.lastButton}
+                    onPress={()=>Alert.alert('Hello')}
+                    ><Text style={styles.last}>Not a Member Yet? Sign Up Now</Text></TouchableOpacity>
         </View>
     );
 }
 
 const styles=StyleSheet.create({
     lastButton:{
-        backgroundColor:"#FFFFFF"
+        backgroundColor:"#FFFFFF",
+        marginLeft:20,
+        marginRight:120,
     },
     container:{
         flex:1,
