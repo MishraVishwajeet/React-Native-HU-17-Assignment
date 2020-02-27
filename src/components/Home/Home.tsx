@@ -2,6 +2,7 @@ import React,{ Component} from 'react';
 import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert} from 'react-native';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 interface homeProps{
     navigation:any
 }
@@ -19,7 +20,7 @@ interface homeProps{
                 ></Image>
                 <Text style={styles.locationHead}>HSR Layout,Banglore</Text>
                 <Image
-                    style={styles.navbar}
+                    style={styles.locdrop}
                     source={require('../../Images/location_dropdown.png')}
                 ></Image>
             </View>
@@ -60,11 +61,34 @@ interface homeProps{
             </Image>
             </TouchableOpacity>
             </View>
+            <Text style={styles.service}>FOLLOWING SERVICES</Text>
+            <View style={styles.cards}>
+                <ScrollView horizontal={true}>
+                    <View style={styles.card}><Text>This is Scrollable! Please Scroll</Text></View>
+                    <View style={styles.card}></View>
+                    <View style={styles.card}></View>
+                    </ScrollView>
+            </View>
         </View>
     );
 }
 
 const styles=StyleSheet.create({
+    cards:{
+        flex:1,
+        flexDirection:'row',
+        marginTop:10,
+        marginLeft:20
+    },
+    card:{
+        backgroundColor:'grey',
+        height:170,width:150,marginRight:10
+    },
+    service:{
+        marginTop:10,
+        fontSize:10,
+        marginLeft:20
+    },
     locationHead:{
         color:'white',
         marginTop:10,
@@ -72,7 +96,8 @@ const styles=StyleSheet.create({
     },
     navbar:{
         width:25,
-        height:25
+        height:25,
+        
     },
     navButton:{
         width:25,
