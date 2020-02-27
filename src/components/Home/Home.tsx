@@ -1,19 +1,12 @@
-import React from 'react';
+import React,{ Component} from 'react';
 import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert} from 'react-native';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
-import verifyReducer from 'src/store/reducers/verify';
-import { State } from 'react-native-gesture-handler';
-interface loginProps{
+interface homeProps{
     navigation:any
 }
-
- const Login=(props:loginProps)=>{
+ const Home=(props:homeProps)=>{
     const [email,setEmail]=React.useState("");
     const [password,setPassword]=React.useState("");
-    const [token,setToken]=React.useState("");
-    
-    const availVerify=useSelector(state=>state.verify);
     const onLoginButton=()=>{
         axios.post('http://tradenapp-env.us-east-1.elasticbeanstalk.com/api/v1/api-token-auth/',{
             username:email,
@@ -21,8 +14,6 @@ interface loginProps{
           })
           .then((response)=>{
               console.log(response.data.token);
-              setToken(response.data.token);
-              props.navigation.navigate("Home");
           })
           .catch(error=>console.log(error))
     }
@@ -37,43 +28,7 @@ interface loginProps{
     }
     return(
         <View style={styles.container}>
-            <View style={styles.titleContainer}>
-
-            <TouchableOpacity
-                style={styles.backButton}
-                onPress={()=>Alert.alert('Hello')}
-            >
-                <Image style={styles.backLogo} source={require('../../Images/back.png')}></Image>
-            </TouchableOpacity>
-            <Text style={styles.textHeader}>LOGIN</Text>
             </View>
-            <Text style={styles.emailHeader}>EMAIL ADDRESS/PHONE NUMBER</Text>
-            <TextInput
-                style={styles.emailBody}
-                value={email}
-                placeholder="eg:sulthan@tradenapp.com or +91 9742 889 859"
-                onChangeText={text=>setEmail(text)}
-                ></TextInput>
-            <Text style={styles.passwordHeader}>PASSWORD</Text>
-            <TextInput
-                style={styles.passwordBody}
-                value={password}
-                placeholder="Password"
-                onChangeText={text=>setPassword(text)}
-                ></TextInput>
-                <TouchableOpacity 
-                    style={styles.loginButton}
-                    onPress={()=>onLoginButton()}
-                ><Text style={styles.loginTitle}>LOGIN</Text></TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.lastButton}
-                    onPress={()=>Alert.alert('Hello')}
-                    ><Text style={styles.last}>Forget Password?</Text></TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.lastButton}
-                    onPress={()=>Alert.alert('Hello')}
-                    ><Text style={styles.last}>Not a Member Yet? Sign Up Now</Text></TouchableOpacity>
-        </View>
     );
 }
 
@@ -157,4 +112,4 @@ const styles=StyleSheet.create({
 });
 
 
-export default Login;
+export default Home;
