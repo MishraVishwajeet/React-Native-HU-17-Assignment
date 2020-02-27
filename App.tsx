@@ -49,8 +49,6 @@ const App = () => {
         </stack.Navigator>
       </NavigationContainer>
       </Provider>
-      // <Provider store={store}>
-      // <Login/></Provider>
   );
 };
 

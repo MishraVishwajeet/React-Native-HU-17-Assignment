@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert} from 'react-native';
+import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert, ShadowPropTypesIOS} from 'react-native';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
-import verifyReducer from 'src/store/reducers/verify';
-import { State } from 'react-native-gesture-handler';
+import {useSelector,useDispatch} from 'react-redux';
+import {toggleToken} from '../../store/actions/login'
 interface loginProps{
     navigation:any
 }
@@ -13,15 +12,16 @@ interface loginProps{
     const [password,setPassword]=React.useState("");
     const [token,setToken]=React.useState("");
     
-    const availVerify=useSelector(state=>state.verify);
+    const dispatch=useDispatch();
+    const availVerify=useSelector(state=>state.verify.token);
     const onLoginButton=()=>{
         axios.post('http://tradenapp-env.us-east-1.elasticbeanstalk.com/api/v1/api-token-auth/',{
             username:email,
             password:password
           })
           .then((response)=>{
-              console.log(response.data.token);
               setToken(response.data.token);
+              dispatch(toggleToken({token}))
               props.navigation.navigate("Home");
           })
           .catch(error=>console.log(error))
