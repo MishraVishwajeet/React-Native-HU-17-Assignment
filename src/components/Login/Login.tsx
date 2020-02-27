@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet,View,Image,Text,TouchableOpacity,TextInput, Alert, ShadowPropTypesIOS} from 'react-native';
 import axios from 'axios';
-import {useSelector,useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {toggleToken} from '../../store/actions/login'
 interface loginProps{
     navigation:any
@@ -13,7 +13,6 @@ interface loginProps{
     const [token,setToken]=React.useState("");
     
     const dispatch=useDispatch();
-    const availVerify=useSelector(state=>state.verify.token);
     const onLoginButton=()=>{
         axios.post('http://tradenapp-env.us-east-1.elasticbeanstalk.com/api/v1/api-token-auth/',{
             username:email,
@@ -27,13 +26,13 @@ interface loginProps{
           .catch(error=>console.log(error))
     }
     const onBackButton=()=>{
-        
+        Alert.alert("This is back button");
     }
     const onForgetButton=()=>{
-        
+        Alert.alert("This is forget button");
     }
     const onSignUpButton=()=>{
-        
+        Alert.alert("This is Signup button");
     }
     return(
         <View style={styles.container}>
