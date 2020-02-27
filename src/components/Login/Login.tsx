@@ -21,6 +21,7 @@ interface loginProps{
           .then((response)=>{
               setToken(response.data.token);
               dispatch(toggleToken({token}))
+              console.log(response.data.token)
               props.navigation.navigate("Home");
           })
           .catch(error=>console.log(error))
